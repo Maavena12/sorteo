@@ -248,4 +248,8 @@ export class SorteoFinalLiguillaComponent {
     }  
     return arr;  
   } 
+
+  isCompletado(partido: any): boolean {
+    return partido.estado === 'Completado';
+  }
 }

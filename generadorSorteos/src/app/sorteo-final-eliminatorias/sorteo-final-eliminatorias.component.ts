@@ -317,4 +317,8 @@ export class SorteoFinalEliminatoriasComponent {
       this.golesAcumulados = {}; // Reiniciamos el objeto de goles acumulados
     }
   
+    isCompletado(partido: any): boolean {
+      return partido.estado === 'Completado';
+    }
+  
 }

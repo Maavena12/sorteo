@@ -80,7 +80,12 @@
                                     <span>{{ partido.split(' vs ')[1] }}</span>  
                                     </td>  
                                     <td>
-                                        <button (click)="completarPartido(i, j)"><fa-icon [icon]="faCheck"></fa-icon></button> 
+                                        <button 
+                                            class="button is-primary"
+                                            (click)="!isCompletado(resultados[i][j]) ? completarPartido(i, j) : null" 
+                                            [disabled]="isCompletado(resultados[i][j])">
+                                            <fa-icon [icon]="faCheck"></fa-icon>
+                                        </button>
                                     </td>
                                     <td>
                                         <span class="status">{{ resultados[i][j].estado }}</span>

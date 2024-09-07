@@ -277,5 +277,9 @@ export class SorteoFinalComponent {
   
     return array; // Retorna el arreglo con todos los equipos seleccionados
   }
+
+  isCompletado(partido: any): boolean {
+    return partido.estado === 'Completado';
+  }
   
 }
