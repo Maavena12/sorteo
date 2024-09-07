@@ -1,0 +1,67 @@
+<div class="container">  
+    <h2 class="title">Fase Eliminación Directa</h2>  
+    <div *ngFor="let ronda of rondas; let rondaIndex = index">  
+        <br>
+        <h3 class="subtitle">{{ getTitleForTeams(getNumEquiposRestantes(rondaIndex)) }}</h3>  
+        <div class="columns is-multiline">  
+            <div class="column is-half" *ngFor="let partido of ronda.partidos; let partidoIndex = index">  
+                <div class="box d-flex flex-column" style="height: 100%;">  
+                    <table class="table is-striped is-bordered" style="flex-grow: 1;">  
+                        <thead>  
+                            <tr>  
+                                <th>Partido</th>  
+                                <th>Completar</th>
+                                <th>Resultado</th>  
+                            </tr>  
+                        </thead>  
+                        <tbody>  
+                            <tr>  
+                                <td>  
+                                    <span>{{ partido.equipo1 }}</span>  
+                                    <input type="number" class="input is-small" [(ngModel)]="partido.goles1" placeholder="0" style="width: 50px; margin: 0 5px;" />  
+                                    vs  
+                                    <input type="number" class="input is-small" [(ngModel)]="partido.goles2" placeholder="0" style="width: 50px; margin: 0 5px;" />  
+                                    <span>{{ partido.equipo2 }}</span>  
+                                </td>  
+                                <td>  
+                                    <button (click)="completarPartido(rondaIndex, partidoIndex)"><fa-icon [icon]="faCheck"></fa-icon></button>  
+                                </td> 
+                                <td>
+                                    <span class="status">{{ partido.estado }}</span>
+                                </td> 
+                            </tr>  
+                        </tbody>  
+                    </table> 
+                    <div *ngIf="partido.penales">  
+                        <h4>Penales</h4>  
+                        <label>{{ partido.equipo1 }}: <input class="dark-input" type="number" [(ngModel)]="partido.penales.equipo1" /></label>  
+                        <label>{{ partido.equipo2 }}: <input type="number" class="dark-input" [(ngModel)]="partido.penales.equipo2" /></label>  
+                        <button (click)="submitPenales()">Determinar Ganador</button>  
+                    </div>  
+                    <p *ngIf="partido.ganador === 'Empate'">Resultado: Empate</p>  
+                    <p *ngIf="partido.ganador && partido.ganador !== 'Empate'">Ganador: {{ partido.ganador }}</p> 
+                    <p class="has-text-danger" style="display: inline;">Nota importante: Para actualizar la tabla de clasificación se debe dar click en el icono </p> <fa-icon [icon]="faCheck"></fa-icon> <p class="has-text-danger" style="display: inline;">  al colocar cada resultado.</p> 
+                </div>  
+            </div>  
+        </div>  
+    </div>  
+</div>  
+
+
+
+<div class="modal" [class.is-active]="isModalActive">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">¡Felicidades Campeón!</p>
+        <button class="delete" aria-label="close"></button>
+      </header>
+      <section class="modal-card-body">
+        ¡Felicidades {{equipoGanador}}, eres el campeón del torneo!
+      </section>
+      <footer class="modal-card-foot">
+        <button (click)="toggleModal()" class="button is-success">Aceptar</button>
+        <button (click)="toggleModal()" class="button">Cancelar</button>
+      </footer>
+    </div>
+</div>

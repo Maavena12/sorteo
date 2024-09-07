@@ -1,0 +1,131 @@
+<div class="container">
+    <h2 class="title">Grupos de Equipos</h2>
+    <div class="columns">
+      <div class="column" style="display: flex; max-width: fit-content;">
+        @for (grupo of gruposGenerados; track $index) {
+            <div class="box" style="display: flex; flex-direction: column; height: 100%;">
+                <h3 class="subtitle">Grupo {{ $index + 1 }}</h3>
+                <table class="table is-striped is-bordered">
+                  <thead>
+                    <tr>
+                      <th>Equipos</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                        @for (equipo of grupo; track $index) {
+                            <td>{{ equipo }}</td>
+                        }
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+        }
+      </div>
+    </div>
+</div>
+<br>
+<div class="container">
+    <h2 class="title">Jornadas de Partidos</h2>
+  
+    <div class="columns is-multiline">  
+        @for (grupo of gruposGenerados; track $index) {  
+            <div class="column is-one-quarter">  
+                <div class="box" style="display: flex; flex-direction: column; height: 100%;">  
+                    <h3 class="subtitle">Grupo {{ $index + 1 }}</h3>  
+                    <table class="table is-striped is-bordered" style="flex-grow: 1;">  
+                        <thead>  
+                            <tr>  
+                                <th>Partido</th>  
+                            </tr>  
+                        </thead>  
+                        <tbody>  
+                            @for (partido of jornadas[$index]; track $index) {  
+                                <tr>  
+                                    <td>{{ partido }}</td>  
+                                </tr>  
+                            }  
+                        </tbody>  
+                    </table>  
+                </div>  
+            </div>  
+        } 
+    </div>  
+</div>
+<br>
+<div class="container">
+    <h2 class="title">Resultados</h2>
+
+    <div class="columns is-multiline">  
+        @for (grupo of gruposGenerados; track $index; let i = $index) {  
+            <div class="column is-half">  
+                <div class="box d-flex flex-column">  
+                    <h3 class="subtitle">Grupo {{ $index + 1 }}</h3>  
+                    <table class="table is-striped is-bordered" style="flex-grow: 1;">  
+                        <thead>  
+                            <tr>  
+                                <th>Partido</th> 
+                                <th>Completar</th>
+                                <th>Resultado</th>
+                            </tr>  
+                        </thead>  
+                        <tbody>  
+                            @for (partido of jornadas[$index]; track $index; let j = $index) {  
+                                <tr>  
+                                    <td>  
+                                    <span>{{ partido.split(' vs ')[0] }}</span>  
+                                    <input type="number" class="input is-small" [(ngModel)]="resultados[i][j].golesEquipo1" (ngModelChange)="onResultadosChange(i, j)" placeholder="0" style="width: 50px; margin: 0 5px;" />  
+                                    vs  
+                                    <input type="number" class="input is-small" [(ngModel)]="resultados[i][j].golesEquipo2" (ngModelChange)="onResultadosChange(i, j)" placeholder="0" style="width: 50px; margin: 0 5px;" />  
+                                    <span>{{ partido.split(' vs ')[1] }}</span>  
+                                    </td>  
+                                    <td>
+                                        <button (click)="completarPartido(i, j)"><fa-icon [icon]="faCheck"></fa-icon></button> 
+                                    </td>
+                                    <td>
+                                        <span class="status">{{ resultados[i][j].estado }}</span>
+                                    </td>
+                                </tr> 
+                            }  
+                        </tbody> 
+                    </table>  
+                </div>  
+            </div>  
+        }  
+    </div>   
+    <p class="has-text-danger" style="display: inline;">Nota importante: Para actualizar la tabla de clasificación se debe dar click en el icono </p> <fa-icon [icon]="faCheck"></fa-icon> <p class="has-text-danger" style="display: inline;">  al colocar cada resultado.</p>
+</div>
+<br>
+<div class="container">
+    <h2 class="title">Clasificación</h2>
+    <div class="columns">
+        <div class="column" style="display: flex; max-width: fit-content;">
+                @for (grupo of equiposPorGrupo; track $index; let i = $index) {
+                    <div class="box" style="display: flex; flex-direction: column; height: 100%;">
+                    <h3 class="subtitle">Grupo {{ i + 1 }}</h3>
+                    <table class="table is-striped is-bordered">
+                        <thead>
+                            <tr>
+                                <th>Equipo</th>
+                                <th>Puntos</th>
+                                <th>Goles a Favor</th>
+                                <th>Goles en Contra</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (equipo of grupo; track $index; let j = $index ) {
+                                <tr [ngClass]="{'classified': j < cantidadClasificados}">
+                                    <td>{{ equipo.nombre }}</td>
+                                    <td>{{ equipo.puntos }}</td>
+                                    <td>{{ equipo.golesAFavor }}</td>
+                                    <td>{{ equipo.golesEnContra }}</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                }
+        </div>
+    </div>
+</div>
+<br>

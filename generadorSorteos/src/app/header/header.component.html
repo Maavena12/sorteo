@@ -1,0 +1,48 @@
+<nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="">
+        <strong>Generador de Sorteos</strong>
+      </a>
+  
+      <a role="button" class="navbar-burger" 
+         aria-label="menu" 
+         aria-expanded="false" 
+         (click)="toggleNavbar()" 
+         [class.is-active]="isActive">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+  
+    <div id="navbarBasicExample" class="navbar-menu" [class.is-active]="isActive">
+      <div class="navbar-start">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            Torneos
+          </a>
+          <div class="navbar-dropdown">
+            <a href="fase-de-grupos" class="navbar-item">
+              Generar Sorteo Fase de Grupos
+            </a>
+            <a href="fase-eliminatoria" class="navbar-item">
+              Generar Sorteo Eliminatoria Directa
+            </a>
+            <a href="liguilla" class="navbar-item">
+              Generar Sorteo Liguilla
+            </a>
+          </div>
+        </div>
+        <!--<a class="navbar-item" href="#">Tabla de posiciones</a>-->
+      </div>
+  
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <!--<div class="buttons">
+            <a class="button is-light">Registrarse</a>
+            <a class="button is-dark">Iniciar sesión</a>
+          </div>-->
+        </div>
+      </div>
+    </div>
+</nav>
