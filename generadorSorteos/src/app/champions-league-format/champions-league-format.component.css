@@ -1,0 +1,11 @@
+/* Puedes personalizar el estilo según tus preferencias */
+.title {
+    margin-bottom: 20px;
+}
+  
+.box {
+    margin-bottom: 15px;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+}

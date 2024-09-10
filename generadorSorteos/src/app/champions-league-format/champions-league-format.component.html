@@ -1,0 +1,129 @@
+<div class="container">  
+  <h2 class="title">Equipos y Rivales</h2>  
+  <table class="table is-striped is-hoverable">  
+    <thead>  
+      <tr>  
+        <th>Equipo</th>  
+        <th>Rivales en Casa</th>  
+        <th>Rivales de Visita</th>  
+      </tr>  
+    </thead>  
+    <tbody>  
+      <tr *ngFor="let equipo of grupos" role="row">  
+        <td role="cell">{{ equipo.equipo }}</td>  
+        <td role="cell">  
+          <ul class="list">  
+            <li *ngFor="let rival of equipo.rivalesCasa">{{ rival }}</li>  
+          </ul>  
+        </td>  
+        <td role="cell">  
+          <ul class="list">  
+            <li *ngFor="let rival of equipo.rivalesVisita">{{ rival }}</li>  
+          </ul>  
+        </td>  
+      </tr>  
+    </tbody>  
+  </table>  
+</div>
+<br>
+<div class="container"> 
+  <button [disabled]="simulado" class="button is-small is-primary ml-2" (click)="simularResultados()">Simular Resultados de Equipos</button> 
+</div>
+<br>
+@if (simulado) {
+  <div class="container">  
+    <h2 class="title">Resultados de los Enfrentamientos</h2>  
+  
+    <div *ngFor="let equipo of grupos">  
+      <h3 class="subtitle">Resultados de {{ equipo.equipo }}</h3>
+  
+      <div class="columns">
+        <div class="column">
+          <h4 class="subtitle">Rivales en Casa</h4>
+          <table class="table is-striped is-hoverable" [attr.aria-label]="'Resultados en Casa de ' + equipo.equipo">
+            <thead>
+              <tr>
+                <th>Enfrentamiento</th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let resultado of equipo.rivalesCasa; let i = index">
+                <td class="has-text-centered">
+                  {{ equipo.equipo }}
+                  <input type="number" placeholder="Goles Casa" class="input is-inline" style="width: 50px;" [(ngModel)]="resultadosPartidos[i].golesCasa" />
+                  vs
+                  <input type="number" placeholder="Goles Visita" class="input is-inline" style="width: 50px;" [(ngModel)]="resultadosPartidos[i].golesVisita" />
+                  {{ equipo.rivalesCasa[i] }}
+                </td>
+                <td>
+                  <button (click)="completarPartido(equipo.equipo, equipo.rivalesCasa[i], resultadosPartidos[i].golesCasa, resultadosPartidos[i].golesVisita, i, 'Casa')" class="button is-small is-primary ml-2" [disabled]="resultado.completado">
+                    <fa-icon [icon]="faCheck"></fa-icon>
+                  </button>
+                </td>
+                <td>
+                  {{ resultado.estado }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+  
+        <div class="column">
+          <h4 class="subtitle">Rivales de Visita</h4>
+          <table class="table is-striped is-hoverable" [attr.aria-label]="'Resultados de Visita de ' + equipo.equipo">
+            <thead>
+              <tr>
+                <th>Enfrentamiento</th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let resultado of equipo.rivalesVisita; let i = index">
+                <td class="has-text-centered">
+                  {{ equipo.rivalesVisita[i] }}
+                  <input type="number" placeholder="Goles Casa" class="input is-inline" style="width: 50px;" [(ngModel)]="resultadosPartidosVisita[i].golesCasa" />
+                  vs
+                  <input type="number" placeholder="Goles Visita" class="input is-inline" style="width: 50px;" [(ngModel)]="resultadosPartidosVisita[i].golesVisita" />
+                  {{ equipo.equipo }}
+                </td>
+                <td>
+                  <button (click)="completarPartido(equipo.rivalesVisita[i], equipo.equipo, resultadosPartidosVisita[i].golesCasa, resultadosPartidosVisita[i].golesVisita, i, 'Visita')" class="button is-small is-primary ml-2" [disabled]="resultado.completado">
+                    <fa-icon [icon]="faCheck"></fa-icon>
+                  </button>
+                </td>
+                <td>
+                  {{ resultado.estado }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <br>
+        </div>
+      </div>
+    </div>  
+  </div>
+}
+<br>
+<div class="container">  
+  <h2 class="title">Clasificación</h2>
+  <table class="table is-striped is-hoverable" [attr.aria-label]="'Clasificación de Equipos'">  
+    <thead>  
+      <tr>  
+        <th>Equipo</th>  
+        <th>Puntos</th>  
+        <th>Goles</th>  
+      </tr>  
+    </thead>  
+    <tbody>  
+      <tr *ngFor="let equipo of clasificacion; let i = index" [style.backgroundColor]="i < 8 ? 'green' : (i >= 8 && i < 24 ? 'lightblue' : 'transparent')"   
+        [style.color]="i < 8 ? 'white' : (i >= 8 && i < 24 ? 'black' : 'white')">  
+        <td [style.color]="i < 8 ? 'white' : (i >= 8 && i < 24 ? 'black' : 'white')">{{ equipo.nombre }}</td>  
+        <td [style.color]="i < 8 ? 'white' : (i >= 8 && i < 24 ? 'black' : 'white')">{{ equipo.puntos }}</td>  
+        <td [style.color]="i < 8 ? 'white' : (i >= 8 && i < 24 ? 'black' : 'white')">{{ equipo.goles }}</td>  
+      </tr>  
+    </tbody>  
+  </table>  
+</div>

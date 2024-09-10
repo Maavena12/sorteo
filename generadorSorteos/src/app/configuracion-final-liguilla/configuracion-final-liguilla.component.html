@@ -1,0 +1,61 @@
+<div class="container">
+    <!-- Título principal -->
+    <h1 class="title has-text-centered" style="padding: 10px;">Configuración de Sorteo</h1>
+    <!-- Descripción -->
+    <p class="subtitle has-text-centered">
+        Bienvenido a la sección de configuración de tu torneo. Aquí podrás personalizar múltiples aspectos para que se adapte a tus necesidades y preferencias.
+    </p>
+    <br>
+    <div class="notification">
+        <h2 class="title is-4">Características del Torneo</h2>
+        <p>
+          Tienes la opción de elegir cómo deseas que se desarrollen los partidos: ¿prefieres que sean en un formato de ida y vuelta, o solo un partido?
+        </p>
+        <p>
+          Además, te proporcionaremos diferentes opciones para que elijas la que mejor se ajuste a tu visión del torneo.
+        </p>
+        <p>¡Configura tu torneo a tu medida y disfruta de una experiencia única!</p>
+    </div>  
+    <section class="section">
+        <div class="container">
+          <h1 class="title">Configuración del Torneo</h1>
+          
+          <div class="notification">
+            <h2 class="title is-4">Partido Ida y Vuelta</h2>
+            <div class="field">
+              <label class="label">¿Quieres jugar partidos de ida y vuelta?</label>
+              <div class="control">
+                <label class="radio" style="padding-right: 20px;">
+                  <input type="radio" name="partido" value="si" (change)="seleccionarPartido = 'si'" required>
+                  Sí
+                </label>
+                <label class="radio">
+                  <input type="radio" name="partido" value="no" (change)="seleccionarPartido = 'no'" required>
+                  No
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <button class="button is-primary" (click)="sorteoFinal()">Confirmar Configuración</button>
+      </section>
+</div>
+
+<div class="modal" [class.is-active]="isModalActive">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Título del Modal</p>
+      <button class="delete" aria-label="close"></button>
+    </header>
+    <section class="modal-card-body">
+      <!-- Contenido del modal -->
+      El campo de ida y vuelta es requerido
+    </section>
+    <footer class="modal-card-foot">
+      <button (click)="toggleModal()" class="button is-success">Aceptar</button>
+      <button (click)="toggleModal()" class="button">Cancelar</button>
+    </footer>
+  </div>
+</div>

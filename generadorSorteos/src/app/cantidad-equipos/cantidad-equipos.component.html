@@ -1,0 +1,49 @@
+<div class="container">
+        <section class="section">
+            <div class="container">
+                <h2 class="title is-2">Fase de Grupos: Configuración de Equipos</h2>
+                <p class="subtitle">¡Bienvenido a la fase de grupos de tu sorteo! En esta etapa, podrás definir la cantidad de equipos que participarán en el sorteo.</p>
+                
+                <h3 class="title is-4">Instrucciones:</h3>
+                <ol class="has-text-left">
+                    <li>Introduce el número total de equipos que deseas incluir en la fase de grupos. Este número debe ser mayor o igual a 2.</li>
+                    <li>Haz clic en "Agregar Equipos" para crear los campos donde podrás ingresar el nombre de cada equipo.</li>
+                    <li>Si deseas realizar cambios, puedes ajustar la cantidad de equipos y volver a crear los campos correspondientes.</li>
+                </ol>
+                <br>
+                <h3 class="title is-4">Ejemplo:</h3>
+                <p>Si ingresas "8", el sistema organizará un sorteo para 8 equipos, dividiéndolos en grupos de manera aleatoria.</p>
+                <br>
+                <div class="field" style="width: 40%;">
+                    <label class="label" for="cantidad-equipos">Cantidad de Equipos:</label>
+                    <div class="control">
+                        <input class="input" type="number" [(ngModel)]="cantidadEquipos" min="2" required>
+                    </div>
+                    <br>
+                    <button class="button is-primary" (click)="agregarEquipos()">Agregar Equipos</button>
+                </div>
+        
+                <div id="equipo-container">  
+                    @if (equipos.length > 0) {  
+                        <h3 class="title is-4">Nombres de los Equipos:</h3>  
+                        <div class="columns is-multiline">  
+                            @for (equipo of equipos; track $index) {  
+                                <div class="column is-6-tablet is-3-desktop">  
+                                    <label class="label">Nombre del Equipo {{ $index + 1 }}:</label>  
+                                    <div class="control">  
+                                        <input  
+                                            class="input"  
+                                            type="text"  
+                                            [(ngModel)]="equipos[$index]"  
+                                            [attr.placeholder]="'Equipo ' + ($index + 1)"  
+                                            required>  
+                                    </div>  
+                                </div>  
+                            }  
+                        </div>  
+                        <button class="button is-success" type="button" (click)="redirectToNextPage()">Continuar</button>  
+                    }  
+                </div>  
+            </div>
+        </section>
+    </div>
