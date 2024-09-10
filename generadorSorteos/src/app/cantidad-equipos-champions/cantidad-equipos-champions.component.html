@@ -1,0 +1,47 @@
+<div class="container">
+    <section class="section">
+        <div class="container">
+            <h2 class="title is-2">Fase de Grupos: Configuración de Equipos</h2>
+            <p class="subtitle">¡Bienvenido al sorteo con el formato de la nueva Champion League!.</p>
+    
+            <h3 class="title is-4">Instrucciones:</h3>
+            <ol class="has-text-left">
+                <li>Introduce el número de jugadores que desean jugar. La cantidad de equipos serán sorteados con los otros 36 equipos que conforman la Champions League.</li>
+                <li>Haz clic en "Agregar Equipos" para crear los campos donde podrás ingresar el nombre de cada equipo.</li>
+                <li>Si deseas realizar cambios, puedes ajustar la cantidad de equipos y volver a crear los campos correspondientes.</li>
+            </ol>
+            <br>
+    
+            <div class="field" style="width: 40%;">
+                <label class="label" for="cantidad-equipos">Cantidad de Equipos:</label>
+                <div class="control">
+                    <input class="input" type="number" [(ngModel)]="cantidadEquipos" min="2" required>
+                </div>
+                <br>
+                <button class="button is-primary" (click)="agregarEquipos()">Agregar Equipos</button>
+            </div>
+    
+            <div id="equipo-container">  
+                @if (equipos.length > 0) {  
+                    <h3 class="title is-4">Nombres de los Equipos:</h3>  
+                    <div class="columns is-multiline">  
+                        @for (equipo of equipos; track $index) {  
+                            <div class="column is-6-tablet is-3-desktop">  
+                                <label class="label">Nombre del Equipo {{ $index + 1 }}:</label>  
+                                <div class="control">  
+                                    <input  
+                                        class="input"  
+                                        type="text"  
+                                        [(ngModel)]="equipos[$index]"  
+                                        [attr.placeholder]="'Equipo ' + ($index + 1)"  
+                                        required>  
+                                </div>  
+                            </div>  
+                        }  
+                    </div>  
+                    <button class="button is-success" type="button" (click)="redirectToNextPage()">Continuar</button>  
+                }  
+            </div>  
+        </div>
+    </section>
+</div>

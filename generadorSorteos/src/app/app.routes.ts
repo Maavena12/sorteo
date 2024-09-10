@@ -10,6 +10,8 @@ import { CantidadEquiposEliminatoriasComponent } from './cantidad-equipos-elimin
 import { ConfiguracionEliminatoriaComponent } from './configuracion-eliminatoria/configuracion-eliminatoria.component';
 import { SorteoFinalEliminatoriasComponent } from './sorteo-final-eliminatorias/sorteo-final-eliminatorias.component';
 import { ChampionsLeagueFormatComponent } from './champions-league-format/champions-league-format.component';
+import { CantidadEquiposChampionsComponent } from './cantidad-equipos-champions/cantidad-equipos-champions.component';
+import { SorteoFinalChampionsComponent } from './sorteo-final-champions/sorteo-final-champions.component';
 
 export const routes: Routes = [
     {
@@ -27,6 +29,10 @@ export const routes: Routes = [
     {
         path: "fase-eliminatoria",
         component: CantidadEquiposEliminatoriasComponent
+    },
+    {
+        path: "fase-champions",
+        component: CantidadEquiposChampionsComponent
     },
     {
         path: "configuracion-sorteo/:equipos",
@@ -53,7 +59,11 @@ export const routes: Routes = [
         component: SorteoFinalEliminatoriasComponent
     },
     {
-        path: "champions-league-format",
+        path: "champions-league-format/:equipos",
         component: ChampionsLeagueFormatComponent
+    },
+    {
+        path: "sorteo-final-champions/:equipos/:octavos/:comparar/:seleccionarPartido",
+        component: SorteoFinalChampionsComponent
     }
 ];

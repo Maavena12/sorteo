@@ -28,6 +28,7 @@ export class SorteoFinalEliminatoriasComponent {
   golesAcumulados: { [key: string]: number } = {};
   submitPenales!: () => void;
   final = false;
+  juegos: number = 0;
 
 
   constructor(private route: ActivatedRoute, private router: Router) {  
@@ -160,19 +161,23 @@ export class SorteoFinalEliminatoriasComponent {
             partido.estado = 'Completado'
         }
 
+        this.juegos++;
+
         // Si estamos en la final, guardar el equipo ganador  
         if (this.getTitleForTeams(this.getNumEquiposRestantes(rondaIndex)) === 'Final') { 
             this.toggleModal();
             this.equipoGanador = partido.ganador;  
-        }  
+        } 
 
         // Verificar si todos los partidos de la ronda han sido completados
-        if (this.rondas[rondaIndex].partidos.every(p => p.goles1 !== undefined && p.goles2 !== undefined)) {  
-            this.generarSiguienteRonda(rondaIndex);  
+        if (this.rondas[rondaIndex].partidos.every(p => p.goles1 !== undefined && p.goles2 !== undefined) && this.rondas[rondaIndex].partidos.length === this.juegos) {  
+          this.juegos = 0;  
+          this.generarSiguienteRonda(rondaIndex);  
         }
       } else {
         this.i++
         partido.estado = 'Completado'
+        this.juegos++;
       }
     } else {
       // Determinar el ganador basado en los goles
@@ -185,15 +190,18 @@ export class SorteoFinalEliminatoriasComponent {
       }  
       partido.estado = 'Completado'
 
+      this.juegos++;
+
       // Si estamos en la final, guardar el equipo ganador  
       if (this.final) { 
           this.toggleModal();
           this.equipoGanador = partido.ganador;  
-      }  
+      } 
 
       // Verificar si todos los partidos de la ronda han sido completados
-      if (this.rondas[rondaIndex].partidos.every(p => p.goles1 !== undefined && p.goles2 !== undefined)) {  
-          this.generarSiguienteRonda(rondaIndex);  
+      if (this.rondas[rondaIndex].partidos.every(p => p.goles1 !== undefined && p.goles2 !== undefined) && this.rondas[rondaIndex].partidos.length === this.juegos) { 
+        this.juegos = 0;   
+        this.generarSiguienteRonda(rondaIndex);
       } 
     } 
   } 
@@ -312,13 +320,13 @@ export class SorteoFinalEliminatoriasComponent {
       return this.golesAcumulados;
   }
 
-    // Método para reiniciar los goles
-    reiniciarGoles() {
-      this.golesAcumulados = {}; // Reiniciamos el objeto de goles acumulados
-    }
-  
-    isCompletado(partido: any): boolean {
-      return partido.estado === 'Completado';
-    }
+  // Método para reiniciar los goles
+  reiniciarGoles() {
+    this.golesAcumulados = {}; // Reiniciamos el objeto de goles acumulados
+  }
+
+  isCompletado(partido: any): boolean {
+    return partido.estado === 'Completado';
+  }
   
 }
