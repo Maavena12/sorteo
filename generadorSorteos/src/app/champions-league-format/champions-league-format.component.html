@@ -52,18 +52,18 @@
               <tr *ngFor="let resultado of equipo.rivalesCasa; let i = index">
                 <td class="has-text-centered">
                   {{ equipo.equipo }}
-                  <input type="number" placeholder="Goles Casa" class="input is-inline" style="width: 50px;" [(ngModel)]="resultadosPartidos[i].golesCasa" />
+                  <input type="number" placeholder="Goles Casa" class="input is-inline" style="width: 50px;" [(ngModel)]="golesCasa" />
                   vs
-                  <input type="number" placeholder="Goles Visita" class="input is-inline" style="width: 50px;" [(ngModel)]="resultadosPartidos[i].golesVisita" />
+                  <input type="number" placeholder="Goles Visita" class="input is-inline" style="width: 50px;" [(ngModel)]="golesVisita" />
                   {{ equipo.rivalesCasa[i] }}
                 </td>
                 <td>
-                  <button (click)="completarPartido(equipo.equipo, equipo.rivalesCasa[i], resultadosPartidos[i].golesCasa, resultadosPartidos[i].golesVisita, i, 'Casa')" class="button is-small is-primary ml-2" [disabled]="resultado.completado">
+                  <button (click)="completarPartido(equipo.equipo, equipo.rivalesCasa[i], golesCasa, golesVisita, i, 'Casa')" class="button is-small is-primary ml-2" [disabled]="resultadosPartidos[equipo.equipo][i].completado">
                     <fa-icon [icon]="faCheck"></fa-icon>
                   </button>
                 </td>
                 <td>
-                  {{ resultado.estado }}
+                  {{ resultadosPartidos[equipo.equipo][i].estado }}
                 </td>
               </tr>
             </tbody>
@@ -84,18 +84,18 @@
               <tr *ngFor="let resultado of equipo.rivalesVisita; let i = index">
                 <td class="has-text-centered">
                   {{ equipo.rivalesVisita[i] }}
-                  <input type="number" placeholder="Goles Casa" class="input is-inline" style="width: 50px;" [(ngModel)]="resultadosPartidosVisita[i].golesCasa" />
+                  <input type="number" placeholder="Goles Casa" class="input is-inline" style="width: 50px;" [(ngModel)]="golesCasa" />
                   vs
-                  <input type="number" placeholder="Goles Visita" class="input is-inline" style="width: 50px;" [(ngModel)]="resultadosPartidosVisita[i].golesVisita" />
+                  <input type="number" placeholder="Goles Visita" class="input is-inline" style="width: 50px;" [(ngModel)]="golesVisita" />
                   {{ equipo.equipo }}
                 </td>
                 <td>
-                  <button (click)="completarPartido(equipo.rivalesVisita[i], equipo.equipo, resultadosPartidosVisita[i].golesCasa, resultadosPartidosVisita[i].golesVisita, i, 'Visita')" class="button is-small is-primary ml-2" [disabled]="resultado.completado">
+                  <button (click)="completarPartido(equipo.rivalesVisita[i], equipo.equipo, golesCasa, golesVisita, i, 'Visita')" class="button is-small is-primary ml-2" [disabled]="resultadosPartidosVisita[equipo.equipo][i].completado">
                     <fa-icon [icon]="faCheck"></fa-icon>
                   </button>
                 </td>
                 <td>
-                  {{ resultado.estado }}
+                  {{ resultadosPartidosVisita[equipo.equipo][i].estado }}
                 </td>
               </tr>
             </tbody>
