@@ -37,13 +37,13 @@ export class ChampionsLeagueFormatComponent {
   golesVisita: number = 0;
   faCheck = faCheck
   clasificacion: EquipoClasificacion[] = []; 
-  resultadosPartidos: ResultadoPartido[] = [];
-  resultadosPartidosVisita: ResultadoPartido[] = [];
   resultadosCalculados: { [key: string]: { golesEquipo1: number; golesEquipo2: number } } = {};  
   partidosRestantes: { [key: number]: number } = {}; 
   jornadasCompletas: boolean = false;
   jugados: number = 0;
   simulado: boolean = false
+  resultadosPartidos: { [key: string]: ResultadoPartido[] } = {};
+  resultadosPartidosVisita: { [key: string]: ResultadoPartido[] } = {};
 
   constructor(private route: ActivatedRoute, private router: Router) {
     this.route.params.subscribe(params => {  
@@ -86,59 +86,49 @@ export class ChampionsLeagueFormatComponent {
     });
   }
 
-  completarPartido(nombreCasa: string, nombreVisita: string, golesCasa: number, golesVisita: number, index: number, nombre: string) { 
-    // Encontrar los equipos involucrados  
-    const equipoCasa = this.clasificacion.find(e => e.nombre === nombreCasa);  
-    const equipoVisita = this.clasificacion.find(e => e.nombre === nombreVisita);  
-  
-    // Verificar que ambos equipos fueron encontrados  
-    if (!equipoCasa || !equipoVisita) {  
-      console.error('Uno de los equipos no se encontró en la clasificación.');  
-      return; // Salir de la función si alguno de los equipos no se encuentra  
-    }  
-  
-    // Sumar los goles  
-    equipoCasa.goles += golesCasa;  
-    equipoVisita.goles += golesVisita;  
-  
-    // Asignar puntos según el resultado  
-    if (golesCasa > golesVisita) {  
-      equipoCasa.puntos += 3; // Gana el equipo de casa  
-    } else if (golesCasa < golesVisita) {  
-      equipoVisita.puntos += 3; // Gana el equipo visitante  
-    } else {  
-      equipoCasa.puntos += 1; // Empate  
-      equipoVisita.puntos += 1; // Empate  
-    }  
-  
-    // Actualización de la tabla de clasificación  
-    this.ordenarClasificacion(); 
-    /*
-    if(nombre === 'Casa'){
-      this.resultadosPartidos[index].estado = 'Completado';
-      this.resultadosPartidos[index].completado = true;
-      this.jugados++
+  completarPartido(nombreCasa: string, nombreVisita: string, golesCasa: number, golesVisita: number, index: number, tipo: 'Casa' | 'Visita') {
+    let resultado: ResultadoPartido | undefined;
+
+    // Verificar el tipo de partido y seleccionar el resultado adecuado
+    if (tipo === 'Casa') {
+        const resultadosEquipoCasa = this.resultadosPartidos[nombreCasa];
+        resultado = resultadosEquipoCasa ? resultadosEquipoCasa[index] : undefined;
+    } else if (tipo === 'Visita') {
+        const resultadosEquipoVisita = this.resultadosPartidosVisita[nombreVisita];
+        resultado = resultadosEquipoVisita ? resultadosEquipoVisita[index] : undefined;
+    }
+
+    if (resultado) {
+        // Cambia el estado a 'Completado'
+        resultado.estado = 'Completado';
+        resultado.completado = true;
+
+        // Actualiza los puntos y goles
+        const equipoCasa = this.clasificacion.find(e => e.nombre === nombreCasa);
+        const equipoVisita = this.clasificacion.find(e => e.nombre === nombreVisita);
+
+        if (equipoCasa && equipoVisita) {
+            // Sumar los goles
+            equipoCasa.goles += golesCasa;
+            equipoVisita.goles += golesVisita;
+
+            // Asignar puntos
+            if (golesCasa > golesVisita) {
+                equipoCasa.puntos += 3; // Gana el equipo de casa
+            } else if (golesCasa < golesVisita) {
+                equipoVisita.puntos += 3; // Gana el equipo visitante
+            } else {
+                equipoCasa.puntos += 1; // Empate
+                equipoVisita.puntos += 1; // Empate
+            }
+
+            // Ordenar la clasificación
+            this.ordenarClasificacion();
+        }
     } else {
-      this.resultadosPartidosVisita[index].estado = 'Completado';
-      this.resultadosPartidosVisita[index].completado = true;
-      this.jugados++
-    }*/
-    this.jugados++
-
-    if (this.jugados === this.equipos.length * 8){
-      this.jornadasCompletas = true
+        console.error('Resultado no encontrado para el partido.');
     }
-
-    if (this.jornadasCompletas){
-      // Array para los primeros 8 equipos
-      const primeros8Equipos = this.clasificacion.slice(0, 8).map(equipo => equipo.nombre);
-      
-      // Array para los equipos del 9 al 24
-      const equipos9a24 = this.clasificacion.slice(8, 24).map(equipo => equipo.nombre);
-
-      this.router.navigate(["/sorteo-final-champions", JSON.stringify(equipos9a24), JSON.stringify(primeros8Equipos), JSON.stringify(this.equipos), 'si'])
-    }
-  } 
+  }
 
   inicializarClasificacion() {  
     this.clasificacion = this.availableEquipos.map(equipo => ({  
@@ -149,12 +139,32 @@ export class ChampionsLeagueFormatComponent {
   } 
 
   inicializarResultados() {  
-    this.grupos[0].rivalesCasa.forEach((rival: any) => {  
-      this.resultadosPartidos.push({ rival, golesCasa: 0, golesVisita: 0, estado: 'En Espera', completado: false });  
-    }); 
-    
-    this.grupos[0].rivalesVisita.forEach((rival: any) => {  
-      this.resultadosPartidosVisita.push({ rival, golesCasa: 0, golesVisita: 0, estado: 'En Espera', completado: false });  
+    this.grupos.forEach((grupo: { rivalesCasa: string[]; equipo: string | number; rivalesVisita: string[]; }) => {
+      grupo.rivalesCasa.forEach((rival: string) => {
+        if (!this.resultadosPartidos[grupo.equipo]) {
+          this.resultadosPartidos[grupo.equipo] = [];
+        }
+        this.resultadosPartidos[grupo.equipo].push({ 
+          rival, 
+          golesCasa: 0, 
+          golesVisita: 0, 
+          estado: 'En Espera', 
+          completado: false 
+        });  
+      }); 
+      
+      grupo.rivalesVisita.forEach((rival: string) => {
+        if (!this.resultadosPartidosVisita[grupo.equipo]) {
+          this.resultadosPartidosVisita[grupo.equipo] = [];
+        }
+        this.resultadosPartidosVisita[grupo.equipo].push({ 
+          rival, 
+          golesCasa: 0, 
+          golesVisita: 0, 
+          estado: 'En Espera', 
+          completado: false 
+        });  
+      });
     });
   } 
 
