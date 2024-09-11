@@ -97,6 +97,7 @@ export class ChampionsLeagueFormatComponent {
         const resultadosEquipoVisita = this.resultadosPartidosVisita[nombreVisita];
         resultado = resultadosEquipoVisita ? resultadosEquipoVisita[index] : undefined;
     }
+    this.jugados++
 
     if (resultado) {
         // Cambia el estado a 'Completado'
@@ -127,6 +128,20 @@ export class ChampionsLeagueFormatComponent {
         }
     } else {
         console.error('Resultado no encontrado para el partido.');
+    }
+
+    if (this.jugados === this.equipos.length * 8){
+      this.jornadasCompletas = true
+    }
+
+    if (this.jornadasCompletas){
+      // Array para los primeros 8 equipos
+      const primeros8Equipos = this.clasificacion.slice(0, 8).map(equipo => equipo.nombre);
+      
+      // Array para los equipos del 9 al 24
+      const equipos9a24 = this.clasificacion.slice(8, 24).map(equipo => equipo.nombre);
+
+      this.router.navigate(["/sorteo-final-champions", JSON.stringify(equipos9a24), JSON.stringify(primeros8Equipos), JSON.stringify(this.equipos), 'si'])
     }
   }
 

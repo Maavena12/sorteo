@@ -236,11 +236,7 @@ export class SorteoFinalChampionsComponent {
         case 8:  
             return 'Cuartos de Final';  
         case 16: 
-        if (this.octavos.length + this.equipos.length === 16) {
-          return 'Octavos de Final';  
-        } else {
-          return 'Play Off';
-        }
+            return 'Octavos de Final';  
         case 32:  
             return '64avos de Final';  
         default:  
