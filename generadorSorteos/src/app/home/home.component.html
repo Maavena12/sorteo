@@ -4,7 +4,7 @@
     <!-- Descripción -->
     <p class="subtitle has-text-centered"><p>¡Bienvenido al <strong>Generador de Torneos de Fútbol</strong>! Esta herramienta está diseñada para ayudar a los amantes del fútbol a organizar y gestionar sus propios torneos de manera sencilla y eficiente. Ya sea que estés organizando un torneo entre amigos, en tu escuela o en tu comunidad, esta plataforma te proporcionará las herramientas necesarias para que el proceso sea más fluido.</p>
     <br>
-    <p>Nuestro generador ofrece <strong>cuatro (4) opciones principales</strong> para crear tu torneo:</p>
+    <p>Nuestro generador ofrece <strong>cinco (5) opciones principales</strong> para crear tu torneo:</p>
     <br>
     <ol>
       <li>
@@ -22,63 +22,106 @@
       <li>
         <strong>Formato Champions League.</strong>
       </li>
+      <br>
+      <li>
+        <strong>Sorteo de Fase de Grupos Personalizado.</strong>
+      </li>
     </ol>
     <br>
     <p>Con el Generador de Torneos de Fútbol, la organización de un torneo nunca ha sido tan fácil. Simplemente elige la opción que mejor se adapte a tus necesidades, y deja que nuestra herramienta haga el trabajo por ti. ¡Comienza ahora y disfruta de la emoción del fútbol con amigos y familiares!</p>
   
     <div class="columns is-centered" style="padding-top: 50px;">
-      <div class="column is-one-third is-flex is-flex-direction-column is-align-items-stretch">
-          <!-- Primer Box en la columna 1 -->
-          <div class="box" style="flex: 1; margin-bottom: 20px;">
-              <h2 class="title has-text-centered">Sorteo de Fase de Grupos:</h2>
-              <p class="has-text-centered">
-                  Con esta opción, podrás dividir a los equipos participantes en grupos de manera aleatoria. El generador asignará automáticamente a los equipos a diferentes grupos, asegurando una distribución equilibrada. Esta fase permitirá que cada equipo compita en un número determinado de partidos, y los mejores avanzarán a la siguiente etapa.
-              </p>
-              <div class="has-text-centered">
-                  <a href="fase-de-grupos" class="button is-link">Generar</a>
-              </div>
-          </div>
-  
-          <!-- Segundo Box en la columna 1 -->
-          <div class="box" style="flex: 1; margin-bottom: 20px;">
-              <h2 class="title has-text-centered">Sorteo de Fase de Eliminación Directa:</h2>
-              <p class="has-text-centered">
-                  Si prefieres un enfoque más emocionante, esta opción es perfecta para ti. Aquí, los equipos se enfrentarán en un formato de eliminación directa, donde se jugará un partido decisivo o, si se prefiere, dos partidos tipo ida y vuelta. El equipo que gane avanzará a la siguiente ronda. Este formato es ideal para intensas finales y cada partido cuenta, ¡ya que cualquier error puede significar el fin del torneo para un equipo!
-              </p>
-              <div class="has-text-centered">
-                  <a href="fase-eliminatoria" class="button is-link">Generar</a>
-              </div>
-          </div>
-      </div>
-  
-      <div class="column is-one-third is-flex is-flex-direction-column is-align-items-stretch">
-          <!-- Primer Box en la columna 2 -->
-          <div class="box" style="flex: 1; margin-bottom: 20px;">
-              <h2 class="title has-text-centered">Sorteo de Liguilla:</h2>
-              <p class="has-text-centered">
-                  Con esta opción, los equipos se enfrentarán en emocionantes partidos, donde demostrarán su destreza y estrategia.
-              </p> 
-              <ul>
-                  <li><strong>Participarán:</strong> Todos los equipos inscritos.</li>
-                  <li><strong>Partidos:</strong> Se sortearán enfrentamientos 1vs1 en diferentes jornadas.</li>
-                  <li><strong>Ida y Vuelta:</strong> Los usuarios podrán elegir si desean jugar partidos de ida o ida y vuelta.</li>
-              </ul>
-              <div class="has-text-centered">
-                  <a href="liguilla" class="button is-link">Generar</a>
-              </div>
-          </div>
-  
-          <!-- Segundo Box en la columna 2 -->
-          <div class="box" style="flex: 1; margin-bottom: 20px;">
-              <h2 class="title has-text-centered">Formato Champions League:</h2>
-              <p class="has-text-centered">
-                  Con esta opción, los equipos se enfrentarán en emocionantes partidos, donde demostrarán su destreza y estrategia. Participarán 36 equipos, donde cada club jugará al menos 8 partidos contra diferentes adversarios. Los 8 mejores clasificados avanzarán directamente a los octavos de final, mientras que los equipos del 9º al 24º lugar disputarán partidos de eliminatoria para completar el cuadro de 16.
-              </p>
-              <div class="has-text-centered">
-                  <a href="fase-champions" class="button is-link">Generar</a>
-              </div>
-          </div>
-      </div>
-  </div>
+        <div class="column is-full">
+            <div class="columns is-multiline">
+    
+                <!-- Primer Box -->
+                <div class="column is-one-third">
+                    <div class="box" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                        <div>
+                            <h2 class="title has-text-centered">🎉 Sorteo de Fase de Grupos:</h2>
+                            <p class="has-text-centered">
+                                Con esta opción, podrás dividir a los equipos participantes en grupos de manera aleatoria. 
+                                El generador asignará automáticamente a los equipos a diferentes grupos, asegurando una distribución equilibrada.
+                            </p>
+                        </div>
+                        <div class="has-text-centered">
+                            <a href="fase-de-grupos" class="button is-link" aria-label="Generar Sorteo de Fase de Grupos">Generar</a>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Segundo Box -->
+                <div class="column is-one-third">
+                    <div class="box" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                        <div>
+                            <h2 class="title has-text-centered">⚔️ Sorteo de Fase de Eliminación Directa:</h2>
+                            <p class="has-text-centered">
+                                Si prefieres un enfoque más emocionante, esta opción es perfecta para ti. Aquí, los equipos se enfrentarán 
+                                en un formato de eliminación directa. El equipo que gane avanzará a la siguiente ronda.
+                            </p>
+                        </div>
+                        <div class="has-text-centered">
+                            <a href="fase-eliminatoria" class="button is-link" aria-label="Generar Sorteo de Fase de Eliminación Directa">Generar</a>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Tercer Box -->
+                <div class="column is-one-third">
+                    <div class="box" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                        <div>
+                            <h2 class="title has-text-centered">⚽ Sorteo de Liguilla:</h2>
+                            <p class="has-text-centered">
+                                Con esta opción, los equipos se enfrentarán en emocionantes partidos, donde demostrarán su destreza 
+                                y estrategia.
+                            </p>
+                            <ul>
+                                <li><strong>Participarán:</strong> Todos los equipos inscritos.</li>
+                                <li><strong>Partidos:</strong> Se sortearán enfrentamientos 1vs1 en diferentes jornadas.</li>
+                                <li><strong>Ida y Vuelta:</strong> Los usuarios podrán elegir si desean jugar partidos de ida o ida y vuelta.</li>
+                            </ul>
+                        </div>
+                        <div class="has-text-centered">
+                            <a href="liguilla" class="button is-link" aria-label="Generar Sorteo de Liguilla">Generar</a>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Cuarto Box -->
+                <div class="column is-one-third">
+                    <div class="box" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                        <div>
+                            <h2 class="title has-text-centered">🏆 Formato Champions League:</h2>
+                            <p class="has-text-centered">
+                                Con esta opción, los equipos se enfrentarán en emocionantes partidos. Participarán 36 equipos, 
+                                donde cada club jugará al menos 8 partidos. Los 8 mejores clasificados avanzarán a los octavos de final.
+                            </p>
+                        </div>
+                        <div class="has-text-centered">
+                            <a href="fase-champions" class="button is-link" aria-label="Generar Formato Champions League">Generar</a>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Quinto Box -->
+                <div class="column is-one-third">
+                    <div class="box" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                        <div>
+                            <h2 class="title has-text-centered">🛠️ Sorteo de Fase de Grupos Personalizado:</h2>
+                            <p class="has-text-centered">
+                                La Fase de Grupo Personalizada permite de 3 a 10 equipos y ofrece un sistema flexible de avance a la eliminación directa. 
+                                Los equipos compiten en grupos y pueden avanzar en diferentes combinaciones, como 5 equipos, donde el primero pasa a la final y los demás juegan una semifinal. 
+                                Esta opción brinda más dinamismo y emoción al torneo.
+                            </p>
+                        </div>
+                        <div class="has-text-centered">
+                            <a href="formato-adicional" class="button is-link" aria-label="Generar Fase de Grupos Personalizado">Generar</a>
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+    </div>
 </div>
 <br>
