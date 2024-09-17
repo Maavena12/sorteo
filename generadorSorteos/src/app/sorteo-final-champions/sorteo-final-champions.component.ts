@@ -32,6 +32,7 @@ export class SorteoFinalChampionsComponent {
   final = false;
   equiposRestantes: number = 0
   enfrentamientoOctavos: boolean = true
+  seEncuentra: boolean = false
 
 
   constructor(private route: ActivatedRoute, private router: Router) {  
@@ -51,13 +52,25 @@ export class SorteoFinalChampionsComponent {
 
     this.actualizarFase = this.equipos.length
 
+    if (this.comparar.some(nombre => this.equipos.includes(nombre))){
+      this.seEncuentra = true
+    }
+
     this.iniciarTorneo(); 
   
   } 
 
   iniciarTorneo() {  
       this.rondas = [];  
-      this.generarPartidos(this.equipos);  
+      /*if (this.seEncuentra){
+        this.generarPartidos(this.equipos);
+      } else {
+        const equiposOctavos = this.eliminarMitad(this.equipos)
+        console.log('entra', equiposOctavos, this.equipos)
+        this.generarPartidos(equiposOctavos.concat(this.octavos))
+      } */
+
+      this.generarPartidos(this.equipos)
   }  
 
   generarPartidos(equipos: string[]) {
@@ -432,5 +445,13 @@ export class SorteoFinalChampionsComponent {
         [array[i], array[j]] = [array[j], array[i]]; // Intercambiar elementos
     }
     return shuffledArray;
+  }
+
+  eliminarMitad(array: string[]) {
+    // Calcular la longitud de la mitad
+    const mitad = Math.floor(array.length / 2);
+  
+    // Retornar una nueva array que contiene solo la primera mitad
+    return array.slice(0, mitad);
   }
 }
