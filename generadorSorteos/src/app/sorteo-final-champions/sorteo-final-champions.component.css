@@ -1,0 +1,12 @@
+.dark-input {
+    background-color: #25292e; 
+    color: white;              
+    border: 1px solid #25292e; 
+    border-radius: 5px;       
+    padding: 10px;            
+}
+
+/* Estilo para el placeholder */
+.dark-input::placeholder { 
+    color: rgba(255, 255, 255, 0.6);
+}

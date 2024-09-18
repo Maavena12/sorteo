@@ -113,6 +113,23 @@ export class EliminatoriasPersonalizadoComponent {
         // Determinar el ganador basado en los goles
         if(ganadorIdaVuelta[partido.equipo1] === ganadorIdaVuelta[partido.equipo2]){
           await this.generarPenales(partido);
+
+          if ((this.equipos.length + this.equiposFinal.length) === 7){
+            if (partido.ganador){
+              this.ganador.push(partido.ganador)
+            }
+    
+            if (this.p === 0){
+              this.equipo1.push(this.ganador[0])
+              this.p++
+            } else if ( this.p === 1){
+              this.equipo2.push(this.ganador[1])
+              this.p++
+            } else if (this.p === 2){
+              this.equipo3.push(this.ganador[2])
+              this.p++
+            }
+          } 
           // Si estamos en la final, guardar el equipo ganador  
           if (this.final) { 
             if (partido.ganador){
@@ -120,7 +137,11 @@ export class EliminatoriasPersonalizadoComponent {
                 this.l++
                 this.ganador.push(partido.ganador)
                 if(this.l !== 2){
-                  this.generarPartidos(this.equiposFinal)
+                  if (this.l === 3){
+
+                  } else {
+                    this.generarPartidos(this.equiposFinal)
+                  }
                 }
                 if (this.l === 2){
                   this.generarPartidos(this.ganador)
@@ -152,20 +173,17 @@ export class EliminatoriasPersonalizadoComponent {
                   }
               }
             }
-      } else {
-        if ((this.equipos.length + this.equiposFinal.length) === 7){
-          if (partido.ganador){
-            if(this.p >= 3) {
-              console.log(partido.ganador, this.equipo1)
-              if (this.k === 0){
-                this.k++
-                console.log('ppppppppppp', this.k)
-                this.generarPartidos(this.equipo3.concat(this.equipo2))
+          } else {
+            if ((this.equipos.length + this.equiposFinal.length) === 7){
+              if (partido.ganador){
+                if(this.p >= 3) {
+                  if (this.k === 0){
+                    this.k++
+                    this.generarPartidos(this.equipo3.concat(this.equipo2))
+                  }
+                }
               }
-            }
-          }
         } else {
-          console.log('entra en ele else')
           // Verificar si todos los partidos de la ronda han sido completados
           if (this.rondas[rondaIndex].partidos.every(p => p.goles1 !== undefined && p.goles2 !== undefined) && this.rondas[rondaIndex].partidos.length === this.juegos) { 
             this.juegos = 0;   
@@ -178,6 +196,23 @@ export class EliminatoriasPersonalizadoComponent {
         }
         else if (ganadorIdaVuelta[partido.equipo1] > ganadorIdaVuelta[partido.equipo2]) {  
             partido.ganador = partido.equipo1;
+
+            if ((this.equipos.length + this.equiposFinal.length) === 7){
+              if (partido.ganador){
+                this.ganador.push(partido.ganador)
+              }
+      
+              if (this.p === 0){
+                this.equipo1.push(this.ganador[0])
+                this.p++
+              } else if ( this.p === 1){
+                this.equipo2.push(this.ganador[1])
+                this.p++
+              } else if (this.p === 2){
+                this.equipo3.push(this.ganador[2])
+                this.p++
+              }
+            } 
             // Si estamos en la final, guardar el equipo ganador  
             if (this.final) { 
               if (partido.ganador){
@@ -185,7 +220,11 @@ export class EliminatoriasPersonalizadoComponent {
                   this.l++
                   this.ganador.push(partido.ganador)
                   if(this.l !== 2){
-                    this.generarPartidos(this.equiposFinal)
+                    if (this.l === 3){
+
+                    } else {
+                      this.generarPartidos(this.equiposFinal)
+                    }
                   }
                   if (this.l === 2){
                     this.generarPartidos(this.ganador)
@@ -221,16 +260,13 @@ export class EliminatoriasPersonalizadoComponent {
           if ((this.equipos.length + this.equiposFinal.length) === 7){
             if (partido.ganador){
               if(this.p >= 3) {
-                console.log(partido.ganador, this.equipo1)
                 if (this.k === 0){
                   this.k++
-                  console.log('ppppppppppp', this.k)
                   this.generarPartidos(this.equipo3.concat(this.equipo2))
                 }
               }
             }
           } else {
-            console.log('entra en ele else')
             // Verificar si todos los partidos de la ronda han sido completados
             if (this.rondas[rondaIndex].partidos.every(p => p.goles1 !== undefined && p.goles2 !== undefined) && this.rondas[rondaIndex].partidos.length === this.juegos) { 
               this.juegos = 0;   
@@ -242,6 +278,23 @@ export class EliminatoriasPersonalizadoComponent {
             partido.estado = 'Completado'
         } else if (ganadorIdaVuelta[partido.equipo2] > ganadorIdaVuelta[partido.equipo1]) {  
             partido.ganador = partido.equipo2; 
+
+            if ((this.equipos.length + this.equiposFinal.length) === 7){
+              if (partido.ganador){
+                this.ganador.push(partido.ganador)
+              }
+      
+              if (this.p === 0){
+                this.equipo1.push(this.ganador[0])
+                this.p++
+              } else if ( this.p === 1){
+                this.equipo2.push(this.ganador[1])
+                this.p++
+              } else if (this.p === 2){
+                this.equipo3.push(this.ganador[2])
+                this.p++
+              }
+            } 
             // Si estamos en la final, guardar el equipo ganador  
             if (this.final) { 
               if (partido.ganador){
@@ -249,7 +302,11 @@ export class EliminatoriasPersonalizadoComponent {
                   this.l++
                   this.ganador.push(partido.ganador)
                   if(this.l !== 2){
-                    this.generarPartidos(this.equiposFinal)
+                    if (this.l === 3){
+
+                    } else {
+                      this.generarPartidos(this.equiposFinal)
+                    }
                   }
                   if (this.l === 2){
                     this.generarPartidos(this.ganador)
@@ -285,16 +342,13 @@ export class EliminatoriasPersonalizadoComponent {
           if ((this.equipos.length + this.equiposFinal.length) === 7){
             if (partido.ganador){
               if(this.p >= 3) {
-                console.log(partido.ganador, this.equipo1)
                 if (this.k === 0){
                   this.k++
-                  console.log('ppppppppppp', this.k)
                   this.generarPartidos(this.equipo3.concat(this.equipo2))
                 }
               }
             }
           } else {
-            console.log('entra en ele else')
             // Verificar si todos los partidos de la ronda han sido completados
             if (this.rondas[rondaIndex].partidos.every(p => p.goles1 !== undefined && p.goles2 !== undefined) && this.rondas[rondaIndex].partidos.length === this.juegos) { 
               this.juegos = 0;   
@@ -341,6 +395,23 @@ export class EliminatoriasPersonalizadoComponent {
 
         this.juegos++;
 
+        if ((this.equipos.length + this.equiposFinal.length) === 7){
+          if (partido.ganador){
+            this.ganador.push(partido.ganador)
+          }
+  
+          if (this.p === 0){
+            this.equipo1.push(this.ganador[0])
+            this.p++
+          } else if ( this.p === 1){
+            this.equipo2.push(this.ganador[1])
+            this.p++
+          } else if (this.p === 2){
+            this.equipo3.push(this.ganador[2])
+            this.p++
+          }
+        } 
+
         if (this.final) { 
           if (partido.ganador){
             if ((this.equipos.length + this.equiposFinal.length) === 6 || (this.equipos.length + this.equiposFinal.length) === 10){
@@ -379,28 +450,24 @@ export class EliminatoriasPersonalizadoComponent {
                 }
             }
           }
-    } else {
-      if ((this.equipos.length + this.equiposFinal.length) === 7){
-        if (partido.ganador){
-          if(this.p >= 3) {
-            console.log(partido.ganador, this.equipo1)
-            if (this.k === 0){
-              this.k++
-              console.log('ppppppppppp', this.k)
-              this.generarPartidos(this.equipo3.concat(this.equipo2))
+        } else {
+          if ((this.equipos.length + this.equiposFinal.length) === 7){
+            if (partido.ganador){
+              if(this.p >= 3) {
+                if (this.k === 0){
+                  this.k++
+                  this.generarPartidos(this.equipo3.concat(this.equipo2))
             }
           }
         }
       } else {
-        console.log('entra en ele else')
         // Verificar si todos los partidos de la ronda han sido completados
         if (this.rondas[rondaIndex].partidos.every(p => p.goles1 !== undefined && p.goles2 !== undefined) && this.rondas[rondaIndex].partidos.length === this.juegos) { 
           this.juegos = 0;   
           this.generarSiguienteRonda(rondaIndex);
         } 
-      }
-    }
-
+          }
+        }
       } else {
         this.i++
         partido.estado = 'Completado'
@@ -482,16 +549,13 @@ export class EliminatoriasPersonalizadoComponent {
         if ((this.equipos.length + this.equiposFinal.length) === 7){
           if (partido.ganador){
             if(this.p >= 3) {
-              console.log(partido.ganador, this.equipo1)
               if (this.k === 0){
                 this.k++
-                console.log('ppppppppppp', this.k)
                 this.generarPartidos(this.equipo3.concat(this.equipo2))
               }
             }
           }
         } else {
-          console.log('entra en ele else')
           // Verificar si todos los partidos de la ronda han sido completados
           if (this.rondas[rondaIndex].partidos.every(p => p.goles1 !== undefined && p.goles2 !== undefined) && this.rondas[rondaIndex].partidos.length === this.juegos) { 
             this.juegos = 0;   

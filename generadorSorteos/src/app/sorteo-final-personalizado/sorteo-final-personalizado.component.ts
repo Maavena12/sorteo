@@ -69,8 +69,6 @@ export class SorteoFinalPersonalizadoComponent {
 
     this.jornadasMezcladas = this.jornadas.map(this.mezclarPartidosGrupos);
 
-    console.log(this.cantidadClasificados)
-
   }
   
   dividirEquiposEnGrupos() {

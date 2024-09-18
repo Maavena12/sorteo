@@ -99,7 +99,7 @@
                             <h4>Penales</h4>  
                             <label>{{ partido.equipo1 }}: <input class="dark-input" type="number" [(ngModel)]="partido.penales.equipo1" /></label>  
                             <label>{{ partido.equipo2 }}: <input type="number" class="dark-input" [(ngModel)]="partido.penales.equipo2" /></label>  
-                            <button (click)="submitPenales()">Determinar Ganador</button>  
+                            <button style="margin-left: 15px;" class="button is-primary" (click)="submitPenales()">Ganador</button>  
                         </div>  
                         <p *ngIf="partido.ganador === 'Empate'">Resultado: Empate</p>  
                         <p *ngIf="partido.ganador && partido.ganador !== 'Empate'">Ganador: {{ partido.ganador }}</p> 
