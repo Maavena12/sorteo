@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "dist/generador-sorteos/browser/**/*",
+      "src": "generador-sorteos/dist/generador-sorteos/browser/**/*",
       "use": "@vercel/static"
     }
   ],
