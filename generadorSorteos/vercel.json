@@ -1,8 +1,5 @@
 {
   "version": 2,
-  "build": {
-    "command": "npm run build"
-  },
   "framework": {
     "type": "angular",
     "distDir": "dist/generador-sorteos"
