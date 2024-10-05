@@ -51,8 +51,8 @@
                   </select>
                 </div>
                 <p class="has-text-danger">Nota importante: El mínimo de equipos por grupo es de tres (3).</p>
-                <br>
                 @if(isDivisor){
+                  <br>
                   <h2 class="title is-4">Cantidad de Equipos a Pasar de Ronda</h2>
                 <div class="select">
                   <select (change)="pasarGrupo($event)">
@@ -66,6 +66,21 @@
                 </div>
                 <p class="has-text-danger">Nota importante: Los equipos a pasar por grupo(s) tiene que ser menor a la cantidad total de quipos por grupo.</p>
                 }
+                @if(cantidadClasificados !== 0 && isDivisor){
+                  <br>
+                  <h2 class="title is-4">Elección Personalizada de Rondas</h2>
+                  <div class="select">
+                    <select (change)="pasarOpcion($event)">
+                      <option value="">Selecciona una opción</option>
+                      @for (opcion of opciones; track $index) {
+                          <option [value]="opcion">
+                              {{ opcion }}
+                          </option>
+                      }
+                    </select>
+                  </div>
+                  <p class="has-text-danger">Nota importante: Al seleccionar la opción la fase eliminatroria se verá afectada por la opción seleccionada.</p>
+                }
                 <br>
                 <div class="is-size-5 has-text-weight-bold">
                     @if (cantidadGrupos) {
@@ -77,6 +92,11 @@
                     Cantidad de clasificados por grupos: {{ cantidadClasificados }} equipos
                   }
                 </div>
+                <div class="is-size-5 has-text-weight-bold">
+                  @if (opcionSelected) {
+                      Opción seleccionada: {{ opcionSelected }}
+                  }
+              </div>
               </div>
             </div>
           </div>

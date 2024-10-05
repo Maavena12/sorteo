@@ -12,6 +12,10 @@ import { SorteoFinalEliminatoriasComponent } from './sorteo-final-eliminatorias/
 import { ChampionsLeagueFormatComponent } from './champions-league-format/champions-league-format.component';
 import { CantidadEquiposChampionsComponent } from './cantidad-equipos-champions/cantidad-equipos-champions.component';
 import { SorteoFinalChampionsComponent } from './sorteo-final-champions/sorteo-final-champions.component';
+import { CantidadEquiposPersonalizadoComponent } from './cantidad-equipos-personalizado/cantidad-equipos-personalizado.component';
+import { ConfiguracionTorneoPersonalizadoComponent } from './configuracion-torneo-personalizado/configuracion-torneo-personalizado.component';
+import { SorteoFinalPersonalizadoComponent } from './sorteo-final-personalizado/sorteo-final-personalizado.component';
+import { EliminatoriasPersonalizadoComponent } from './eliminatorias-personalizado/eliminatorias-personalizado.component';
 
 export const routes: Routes = [
     {
@@ -35,8 +39,16 @@ export const routes: Routes = [
         component: CantidadEquiposChampionsComponent
     },
     {
+        path: "fase-de-grupos-personalizado",
+        component: CantidadEquiposPersonalizadoComponent
+    },
+    {
         path: "configuracion-sorteo/:equipos",
         component: ConfiguracionSorteoComponent
+    },
+    {
+        path: "configuracion-sorteo-personalizado/:equipos",
+        component: ConfiguracionTorneoPersonalizadoComponent
     },
     {
         path: "configuracion-eliminatoria/:equipos",
@@ -49,6 +61,10 @@ export const routes: Routes = [
     {
         path: "sorteo-final/:equipos/:divisor/:seleccionarPartido/:cantidadClasificados",
         component: SorteoFinalComponent
+    },
+    {
+        path: "sorteo-final-personalizado/:equipos/:divisor/:seleccionarPartido/:cantidadClasificados/:opción",
+        component: SorteoFinalPersonalizadoComponent
     },
     {
         path: "sorteo-final-liguilla/:equipos/:divisor/:seleccionarPartido/:cantidadClasificados",
@@ -65,5 +81,9 @@ export const routes: Routes = [
     {
         path: "sorteo-final-champions/:equipos/:octavos/:comparar/:seleccionarPartido",
         component: SorteoFinalChampionsComponent
-    }
+    },
+    {
+        path: "eliminatoria-personalizada/:equipos/:seleccionarPartido/:final",
+        component: EliminatoriasPersonalizadoComponent
+    },
 ];

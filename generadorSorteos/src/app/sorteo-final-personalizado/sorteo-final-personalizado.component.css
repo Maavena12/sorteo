@@ -1,0 +1,28 @@
+div.box{
+    margin-right: 50px;
+}
+
+.classified {
+    background-color: rgb(21, 124, 21) !important;
+}
+
+.green {
+    background-color: rgb(21, 124, 21) !important; /* Verde */
+}
+
+.light-blue {
+    background-color: rgb(11, 173, 228) !important; /* Azul celeste */
+}
+
+.leyenda {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.circle {
+    width: 20px; /* Tamaño del círculo */
+    height: 20px; /* Tamaño del círculo */
+    border-radius: 50%; /* Para hacer que sea un círculo */
+    margin-right: 5px; /* Espacio entre el círculo y el texto */
+}
