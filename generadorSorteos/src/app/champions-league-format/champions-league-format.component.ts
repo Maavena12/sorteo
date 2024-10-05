@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { Equipo } from '../equipo';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { CommonModule } from '@angular/common';
