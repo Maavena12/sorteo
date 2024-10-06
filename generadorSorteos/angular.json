@@ -20,7 +20,7 @@
                 "maximumError": "2MB"
               }
             ],
-            "outputPath": "dist/generador-sorteos",
+            "outputPath": "dist",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
