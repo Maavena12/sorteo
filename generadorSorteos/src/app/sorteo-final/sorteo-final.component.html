@@ -101,36 +101,38 @@
     <p class="has-text-danger" style="display: inline;">Nota importante: Para actualizar la tabla de clasificación se debe dar click en el icono </p> <fa-icon [icon]="faCheck"></fa-icon> <p class="has-text-danger" style="display: inline;">  al colocar cada resultado.</p>
 </div>
 <br>
-<div class="container">
-    <h2 class="title">Clasificación</h2>
-    <div class="columns">
-        <div class="column" style="display: flex; max-width: fit-content;">
-                @for (grupo of equiposPorGrupo; track $index; let i = $index) {
-                    <div class="box" style="display: flex; flex-direction: column; height: 100%;">
-                    <h3 class="subtitle">Grupo {{ i + 1 }}</h3>
-                    <table class="table is-striped is-bordered">
-                        <thead>
-                            <tr>
-                                <th>Equipo</th>
-                                <th>Puntos</th>
-                                <th>Goles a Favor</th>
-                                <th>Goles en Contra</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @for (equipo of grupo; track $index; let j = $index ) {
-                                <tr [ngClass]="{'classified': j < cantidadClasificados}">
-                                    <td>{{ equipo.nombre }}</td>
-                                    <td>{{ equipo.puntos }}</td>
-                                    <td>{{ equipo.golesAFavor }}</td>
-                                    <td>{{ equipo.golesEnContra }}</td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-                }
-        </div>
-    </div>
-</div>
+<div class="container">  
+    <h2 class="title">Clasificación</h2>  
+    <div class="columns">  
+        <div class="column" style="display: flex; max-width: fit-content;">  
+            @for (grupo of equiposPorGrupo; track $index; let i = $index) {  
+                <div class="box" style="display: flex; flex-direction: column; height: 100%;">  
+                    <h3 class="subtitle">Grupo {{ i + 1 }}</h3>  
+                    <table class="table is-striped is-bordered">  
+                        <thead>  
+                            <tr>  
+                                <th>Equipo</th>  
+                                <th>Puntos</th>  
+                                <th>Goles a Favor</th>  
+                                <th>Goles en Contra</th>  
+                                <th>Diferencia de Goles</th>  <!-- Nueva columna -->  
+                            </tr>  
+                        </thead>  
+                        <tbody>  
+                            @for (equipo of grupo; track $index; let j = $index) {  
+                                <tr [ngClass]="{'classified': j < cantidadClasificados}">  
+                                    <td>{{ equipo.nombre }}</td>  
+                                    <td>{{ equipo.puntos }}</td>  
+                                    <td>{{ equipo.golesAFavor }}</td>  
+                                    <td>{{ equipo.golesEnContra }}</td>  
+                                    <td>{{ calcularDiferenciaGoles(equipo.golesAFavor, equipo.golesEnContra) }}</td> 
+                                </tr>  
+                            }  
+                        </tbody>  
+                    </table>  
+                </div>  
+            }  
+        </div>  
+    </div>  
+</div>  
 <br>

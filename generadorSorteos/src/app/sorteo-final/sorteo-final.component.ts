@@ -224,14 +224,17 @@ export class SorteoFinalComponent {
     delete this.golesTemporales[`${grupoIndex}-${partidoIndex}`];
   }
 
-  private updateClasificacion(grupoIndex: number) {
-      this.equiposPorGrupo[grupoIndex].sort((a, b) => {
-          if (b.puntos === a.puntos) {
-              return b.golesAFavor - a.golesAFavor;
-          }
-          return b.puntos - a.puntos;
-      });
-  }
+  private updateClasificacion(grupoIndex: number) {  
+      this.equiposPorGrupo[grupoIndex].sort((a, b) => {  
+          if (b.puntos === a.puntos) {   
+              const diferenciaGolesA = a.golesAFavor - a.golesEnContra;  
+              const diferenciaGolesB = b.golesAFavor - b.golesEnContra;  
+
+              return diferenciaGolesB - diferenciaGolesA;   
+          }  
+          return b.puntos - a.puntos;  
+      });  
+  }  
 
   mezclarPartidosGrupos(arr: string[]): string[] {  
     for (let i = arr.length - 1; i > 0; i--) {  
@@ -275,11 +278,16 @@ export class SorteoFinalComponent {
       array = array.concat(equiposDelGrupo)
     });
   
-    return array; // Retorna el arreglo con todos los equipos seleccionados
+    return array;
   }
 
   isCompletado(partido: any): boolean {
     return partido.estado === 'Completado';
   }
+
+  calcularDiferenciaGoles(golesAFavor: number, golesEnContra: number): string {  
+    const diferencia = golesAFavor - golesEnContra;  
+    return diferencia < 0 ? `-${Math.abs(diferencia)}` : `${diferencia}`;  
+  } 
   
 }
